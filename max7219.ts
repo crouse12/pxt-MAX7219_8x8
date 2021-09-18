@@ -381,7 +381,7 @@ namespace max7219_matrix {
     /**
     * Turn on or off all MAX7219s
     */
-    //% block="Turn on all matrixs $status" status.defl=true group="3. Basic light control" advanced=true
+    //% block="打開所有的MAX7219的燈 $status" status.defl=true group="3. Basic light control" advanced=true
     export function togglePower(status: boolean) {
         if (status) _registerAll(_SHUTDOWN, 1)
         else _registerAll(_SHUTDOWN, 0)
@@ -390,7 +390,7 @@ namespace max7219_matrix {
     /**
     * Set brightness level of LEDs on all MAX7219s
     */
-    //% block="設定所有的明暗等級 $level" level.min=0 level.max=15 level.defl=15 group="3. Basic light control"
+    //% block="設定所有MAX7219的明暗等級 $level" level.min=0 level.max=15 level.defl=15 group="3. Basic light control"
     export function brightnessAll(level: number) {
         _registerAll(_INTENSITY, level)
     }
@@ -517,7 +517,7 @@ namespace max7219_matrix {
     /**
     * Return a full 8x8 number matrix variable
     */
-    //% block="Full 8x8 pattern" group="4. Set custom LED pattern on matrixs" advanced=true
+    //% block="打開所有 8x8 圖案" group="4. Set custom LED pattern on matrixs" advanced=true
     export function getFullMatrix() {
         return [
             [1, 1, 1, 1, 1, 1, 1, 1],
