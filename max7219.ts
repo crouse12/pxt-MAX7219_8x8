@@ -24,7 +24,7 @@ namespace max7219_matrix {
     /**
     * Setup/reset MAX7219s. If you are using 4-in-1 module you'll need to set rotation as true. If your chain are consisted of single modules set it as false (default).
     */
-    //% block="Setup MAX7219:|Number of matrixs $num|CS(LOAD) = $cs|MOSI(DIN) = $mosi|MISO(not used) = $miso|SCK(CLK) = $sck"
+    //% block="設定 MAX7219:|接了幾個 matrixs $num|CS(LOAD) = $cs|MOSI(DIN) = $mosi|MISO(not used) = $miso|SCK(CLK) = $sck"
     //% num.min=1 num.defl=1 cs.defl=DigitalPin.P16 mosi.defl=DigitalPin.P15 miso.defl=DigitalPin.P14 sck.defl=DigitalPin.P13 rotate.defl=false group="1. Setup"
     export function setup(num: number, cs: DigitalPin, mosi: DigitalPin, miso: DigitalPin, sck: DigitalPin) {
         // set internal variables        
@@ -49,7 +49,7 @@ namespace max7219_matrix {
     /**
     * Rotation/reverse order options for 4-in-1 MAX7219 modules
     */
-    //% block="Rotate matrix display $rotation|Reverse printing order $reversed" rotation.defl=rotation_direction.none group="1. Setup" blockExternalInputs=true advanced=true
+    //% block="翻滾 matrix  $rotation|反轉順序 $reversed" rotation.defl=rotation_direction.none group="1. Setup" blockExternalInputs=true advanced=true
     export function for_4_in_1_modules(rotation: rotation_direction, reversed: boolean) {
         _rotation = rotation
         _reversed = reversed
@@ -141,7 +141,7 @@ namespace max7219_matrix {
     /**
     * Scroll a text accross all MAX7219 matrixs for once
     */
-    //% block="Scroll text $text|delay (ms) $delay|at the end wait (ms) $endDelay" text.defl="Hello world!" delay.min=0 delay.defl=75 endDelay.min=0 endDelay.defl=500 group="2. Display text on matrixs" blockExternalInputs=true
+    //% block="跑馬燈 文字 $text|延遲 (ms) $delay|最後等待 (ms) $endDelay" text.defl="Hello world!" delay.min=0 delay.defl=75 endDelay.min=0 endDelay.defl=500 group="2. Display text on matrixs" blockExternalInputs=true
     export function scrollText(text: string, delay: number, endDelay: number) {
         let printPosition = _displayArray.length - 8
         let characters_index: number[] = []
@@ -207,7 +207,7 @@ namespace max7219_matrix {
     /**
     * Print a text accross the chain of MAX7219 matrixs at a specific spot. Offset value -8 ~ last column of matrixs. You can choose to clear the screen or not (if not it can be used to print multiple string on the MAX7219 chain).
     */
-    //% block="Display text (align left) $text|offset $offset|clear screen first $clear" text.defl="Hi!" offset.min=-8 clear.defl=true group="2. Display text on matrixs" blockExternalInputs=true
+    //% block="展示文字 (對齊左邊) $text|位移 $offset|先清除螢幕 $clear" text.defl="Hi!" offset.min=-8 clear.defl=true group="2. Display text on matrixs" blockExternalInputs=true
     export function displayText(text: string, offset: number, clear: boolean) {
         // clear screen and array if needed
         if (clear) {
@@ -256,7 +256,7 @@ namespace max7219_matrix {
     /**
     * Print a text on the chain of MAX7219 matrixs and automatically align to the right.
     */
-    //% block="Display text (align right) $text|clear screen first $clear" text.defl="Hi!" clear.defl=true group="2. Display text on matrixs" blockExternalInputs=true
+    //% block="顯示文字 (對齊右邊) $text|先清除螢幕 $clear" text.defl="Hi!" clear.defl=true group="2. Display text on matrixs" blockExternalInputs=true
     export function displayTextAlignRight(text: string, clear: boolean) {
         let len = 0
         for (let i = 0; i < text.length; i++) {
@@ -269,7 +269,7 @@ namespace max7219_matrix {
     /**
     * Print a custom character from a number array on the chain of MAX7219 matrixs at a specific spot. Each number in the array is 0-255, the decimal version of column's byte number. Offset value -8 ~ last column of matrixs. You can choose to clear the screen or not (if not it can be used to print multiple string on the MAX7219 chain).
     */
-    //% block="Display custom character from|number array $customCharArray|offset $offset|clear screen first $clear" offset.min=-8 clear.defl=true group="2. Display text on matrixs" blockExternalInputs=true advanced=true
+    //% block="顯示常見文字|數字陣列 $customCharArray|位移 $offset|先清除螢幕 $clear" offset.min=-8 clear.defl=true group="2. Display text on matrixs" blockExternalInputs=true advanced=true
     export function displayCustomCharacter(customCharArray: number[], offset: number, clear: boolean) {
         // clear screen and array if needed
         if (clear) {
@@ -305,7 +305,7 @@ namespace max7219_matrix {
     /**
     * Return a number array calculated from a 8x8 LED byte array (example: B00100000,B01000000,B10000110,B10000000,B10000000,B10000110,B01000000,B00100000)
     */
-    //% block="Get custom character number array|from byte-array string $text" text.defl="B00100000,B01000000,B10000110,B10000000,B10000000,B10000110,B01000000,B00100000" group="2. Display text on matrixs" blockExternalInputs=true advanced=true
+    //% block="取得數字陣列|從 byte陣列文字 $text" text.defl="B00100000,B01000000,B10000110,B10000000,B10000000,B10000110,B01000000,B00100000" group="2. Display text on matrixs" blockExternalInputs=true advanced=true
     export function getCustomCharacterArray(text: string) {
         let tempTextArray: string[] = []
         let resultNumberArray: number[] = []
@@ -343,7 +343,7 @@ namespace max7219_matrix {
     * Add a custom character from a number array at the end of the extension's font library.
     * Each number in the array is 0-255, the decimal version of column's byte number.
     */
-    //% block="Add custom character $chr|number array $customCharArray|to the extension font library"
+    //% block="增加一個習慣字元 $chr|數字陣列 $customCharArray|到函式庫中"
     //% chr.defl=""
     //% blockExternalInputs=true
     //% group="2. Display text on matrixs"
@@ -390,7 +390,7 @@ namespace max7219_matrix {
     /**
     * Set brightness level of LEDs on all MAX7219s
     */
-    //% block="Set all brightness level $level" level.min=0 level.max=15 level.defl=15 group="3. Basic light control"
+    //% block="設定所有的明暗等級 $level" level.min=0 level.max=15 level.defl=15 group="3. Basic light control"
     export function brightnessAll(level: number) {
         _registerAll(_INTENSITY, level)
     }
@@ -398,7 +398,7 @@ namespace max7219_matrix {
     /**
     * Set brightness level of LEDs on a specific MAX7219s (index 0=farthest on the chain)
     */
-    //% block="Set brightness level $level on matrix index = $index" level.min=0 level.max=15 level.defl=15 index.min=0 group="3. Basic light control" advanced=true
+    //% block="設定第幾個 $index 明暗等級 $level " level.min=0 level.max=15 level.defl=15 index.min=0 group="3. Basic light control" advanced=true
     export function brightnessForOne(level: number, index: number) {
         _registerForOne(_INTENSITY, level, index)
     }
@@ -406,7 +406,7 @@ namespace max7219_matrix {
     /**
     * Turn on all LEDs on all MAX7219s
     */
-    //% block="Fill all LEDs" group="3. Basic light control"
+    //% block="所有的MAX7219燈都打開" group="3. Basic light control"
     export function fillAll() {
         for (let i = 0; i < 8; i++) _registerAll(_DIGIT[i], 255)
     }
@@ -414,7 +414,7 @@ namespace max7219_matrix {
     /**
     * Turn on LEDs on a specific MAX7219
     */
-    //% block="Fill LEDs on matrix index = $index" index.min=0 group="3. Basic light control" advanced=true
+    //% block="打開第 $index 個MAX7219上的燈" index.min=0 group="3. Basic light control" advanced=true
     export function fillForOne(index: number) {
         for (let i = 0; i < 8; i++) _registerForOne(_DIGIT[i], 255, index)
     }
@@ -422,7 +422,7 @@ namespace max7219_matrix {
     /**
     * Turn off LEDs on all MAX7219s
     */
-    //% block="Clear all LEDs" group="3. Basic light control"
+    //% block="關閉所有的MAX7219" group="3. Basic light control"
     export function clearAll() {
         for (let i = 0; i < 8; i++) _registerAll(_DIGIT[i], 0)
     }
@@ -430,7 +430,7 @@ namespace max7219_matrix {
     /**
     * Turn off LEDs on a specific MAX7219 (index 0=farthest on the chain)
     */
-    //% block="Clear LEDs on matrix index = $index" index.min=0 group="3. Basic light control" advanced=true
+    //% block="關閉第 $index 個MAX7219上的燈" index.min=0 group="3. Basic light control" advanced=true
     export function clearForOne(index: number) {
         for (let i = 0; i < 8; i++) _registerForOne(_DIGIT[i], 0, index)
     }
@@ -438,7 +438,7 @@ namespace max7219_matrix {
     /**
     * Turn on LEDs randomly on all MAX7219s
     */
-    //% block="Randomize all LEDs" index.min=0 group="3. Basic light control"
+    //% block="隨機打開所有的MAX7219" index.min=0 group="3. Basic light control"
     export function randomizeAll() {
         for (let i = 0; i < 8; i++) _registerAll(_DIGIT[i], Math.randomRange(0, 255))
     }
@@ -446,7 +446,7 @@ namespace max7219_matrix {
     /**
     * Turn on LEDs randomly on a specific MAX7219 (index 0=farthest on the chain)
     */
-    //% block="Randomize LEDs on matrix index = $index" index.min=0 group="3. Basic light control" advanced=true
+    //% block="隨機打開第 $index 個MAX7219上的燈" index.min=0 group="3. Basic light control" advanced=true
     export function randomizeForOne(index: number) {
         for (let i = 0; i < 8; i++) _registerForOne(_DIGIT[i], Math.randomRange(0, 255), index)
     }
@@ -454,7 +454,7 @@ namespace max7219_matrix {
     /**
     * Set LEDs of all MAX7219s to a pattern from a 8x8 matrix variable (index 0=farthest on the chain)
     */
-    //% block="Display 8x8 pattern $newMatrix on all matrixs" group="4. Set custom LED pattern on matrixs" advanced=true
+    //% block="顯示 8x8 圖案 $newMatrix 在所有的MAX7219" group="4. Set custom LED pattern on matrixs" advanced=true
     export function displayLEDsToAll(newMatrix: number[][]) {
         let columnValue = 0
         if (newMatrix != null) {
@@ -477,7 +477,7 @@ namespace max7219_matrix {
     /**
     * Set LEDs of a specific MAX7219s to a pattern from a 8x8 number matrix variable (index 0=farthest on the chain)
     */
-    //% block="Display 8x8 pattern $newMatrix|on matrix index = $index" index.min=0 blockExternalInputs=true group="4. Set custom LED pattern on matrixs"
+    //% block="顯示 8x8 圖案 $newMatrix|在第 $index 個MAX7219" index.min=0 blockExternalInputs=true group="4. Set custom LED pattern on matrixs"
     export function displayLEDsForOne(newMatrix: number[][], index: number) {
         let columnValue = 0
         if (newMatrix != null) {
@@ -500,7 +500,7 @@ namespace max7219_matrix {
     /**
     * Return a empty 8x8 number matrix variable
     */
-    //% block="Empty 8x8 pattern" group="4. Set custom LED pattern on matrixs"
+    //% block="回傳一個空白的MAX7219" group="4. Set custom LED pattern on matrixs"
     export function getEmptyMatrix() {
         return [
             [0, 0, 0, 0, 0, 0, 0, 0],
@@ -534,7 +534,7 @@ namespace max7219_matrix {
     /**
     * Return a specific value from a 8x8 number matrix variable
     */
-    //% block="Get value from 8x8 pattern %matrix|x = $x y = $y" x.min=0 x.max=7 y.min=0 y.max=7 group="4. Set custom LED pattern on matrixs" blockExternalInputs=true advanced=true
+    //% block="取得一個8*8陣列 %matrix|x = $x y = $y" x.min=0 x.max=7 y.min=0 y.max=7 group="4. Set custom LED pattern on matrixs" blockExternalInputs=true advanced=true
     export function getValueFromMatrix(matrix: number[][], x: number, y: number) {
         return matrix[x][y]
     }
@@ -542,7 +542,7 @@ namespace max7219_matrix {
     /**
     * Set a specific value in a 8x8 number matrix variable
     */
-    //% block="Set 8x8 pattern %matrix|x = $x y = $y value to $value" value.min=0 value.max=1 x.min=0 x.max=7 y.min=0 y.max=7 group="4. Set custom LED pattern on matrixs" blockExternalInputs=true
+    //% block="設定一個 8x8 圖示 %matrix|x = $x y = $y value to $value" value.min=0 value.max=1 x.min=0 x.max=7 y.min=0 y.max=7 group="4. Set custom LED pattern on matrixs" blockExternalInputs=true
     export function setValueInMatrix(matrix: number[][], x: number, y: number, value: number) {
         matrix[x][y] = value
     }
@@ -550,7 +550,7 @@ namespace max7219_matrix {
     /**
     * Toggle (between 0/1) a specific value in a 8x8 number matrix variable
     */
-    //% block="Toogle value in 8x8 pattern %matrix|x = $x y = $y" x.min=0 x.max=7 y.min=0 y.max=7 group="4. Set custom LED pattern on matrixs" blockExternalInputs=true advanced=true
+    //% block="切換在 8x8 圖案的值 %matrix|x = $x y = $y" x.min=0 x.max=7 y.min=0 y.max=7 group="4. Set custom LED pattern on matrixs" blockExternalInputs=true advanced=true
     export function toogleValueInMatrix(matrix: number[][], x: number, y: number) {
         if (matrix[x][y] == 1) matrix[x][y] = 0
         else if (matrix[x][y] == 0) matrix[x][y] = 1
