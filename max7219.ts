@@ -359,7 +359,7 @@ namespace max7219_matrix {
     /**
     * Display all fonts in the extension font library
     */
-    //% block="Display all fonts at delay $delay" delay.min=0 delay.defl=200 group="2. Display text on matrixs" advanced=true
+    //% block="顯示所有的字延遲 $delay " delay.min=0 delay.defl=200 group="2. Display text on matrixs" advanced=true
     export function fontDemo(delay: number) {
         let offsetIndex = 0
         clearAll()
